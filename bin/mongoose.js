@@ -4473,7 +4473,8 @@ Schema.prototype.defaultOptions = function(options) {
     _id: true,
     noVirtualId: false, // deprecated, use { id: false }
     id: true,
-    typeKey: 'type'
+    typeKey: 'type',
+    mflNoSubDoc: false
   }, options);
 
   if (options.read) {
