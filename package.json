@@ -85,7 +85,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Automattic/mongoose.git"
+    "url": "git://github.com/moonfrog/mongoose.git"
   },
   "homepage": "http://mongoosejs.com",
   "browser": "lib/browser.js"
