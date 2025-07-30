@@ -1,0 +1,453 @@
+
+> mongoose@4.9.4 test
+> mocha test/*.test.js test/**/*.test.js
+
+Not testing multi-mongos support
+[31m 
+ You're not testing shards! 
+ Please set the MONGOOSE_SHARD_TEST_URI env variable. 
+ e.g: `mongodb://localhost:27017/database 
+ Sharding must already be enabled on your database [39m
+
+
+  ․․․․!․․․․․․․․․․․․․․․․․․․․!․․․․․․․!!!!!․․!!!!!․!․․!․․․․․․
+  ․․․․․․․․․․․․․․․․․!․․․․․․!․․․․․․․․․․․․․․․․․․․!․․․․․․․․․․․
+  ․․․․․․!․․․․․․․․․․․․․․․․․!․․․․․․․․․․․․!․․․․․․․․․․․․․!․․․․
+  ․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․
+  ․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․!․․․․․․
+  ․․․․․․․․․․․․․․․․․․․․․!․!․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․
+  ․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․[31m 
+ You're not testing replica sets! 
+ Please set the MONGOOSE_SET_TEST_URI env variable. 
+ e.g: `mongodb://localhost:27017/db,localhost…` 
+ [39m
+․․․․․․․․․․․․․․․․․
+  ․․․․!․․․․․․․․․․․․․․․․․․․․․․․․․․!!․!․!
+
+  400 passing (28s)
+  29 failing
+
+  1) aggregate:  query by document (gh-4866):
+     MongoError: The 'cursor' option is required, except for aggregate with the explain argument
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  2) aggregate:  near works with discriminators (gh-3304):
+     AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Cannot read property 'aggregate' of undefined|Cannot call method 'aggregate' of undefined/. Input:
+
+"TypeError: Cannot read properties of undefined (reading 'aggregate')"
+
+      at Context.<anonymous> (test/aggregate.test.js:340:14)
+      at processImmediate (node:internal/timers:466:21)
+
+  3) aggregate:  exec project:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:520:18
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  4) aggregate:  exec group:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:537:18
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  5) aggregate:  exec skip:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:556:18
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  6) aggregate:  exec limit:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:570:18
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  7) aggregate:  exec unwind:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:584:18
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  8) aggregate:  exec match:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:627:18
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  9) aggregate:  exec sort:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:641:18
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  10) aggregate:  exec graphLookup:
+     MongoError: The 'cursor' option is required, except for aggregate with the explain argument
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  11) aggregate:  exec facet:
+     MongoError: The 'cursor' option is required, except for aggregate with the explain argument
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  12) aggregate:  exec complex pipeline:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:755:18
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  13) aggregate:  exec handles aggregation options:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: The 'cursor' option is required, except for aggregate with the explain argument
+      at test/aggregate.test.js:855:20
+      at lib/aggregate.js:658:15
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/collection.js:2687:7
+      at handleCallback (node_modules/mongodb/lib/utils.js:120:56)
+      at node_modules/mongodb/lib/db.js:311:20
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at node_modules/mongodb-core/lib/connection/pool.js:489:72
+      at authenticateStragglers (node_modules/mongodb-core/lib/connection/pool.js:435:16)
+      at Connection.messageHandler (node_modules/mongodb-core/lib/connection/pool.js:469:5)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:321:22)
+      at Socket.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+      at readableAddChunk (node:internal/streams/readable:289:9)
+      at Socket.Readable.push (node:internal/streams/readable:228:10)
+      at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+
+  14) aggregate:  exec error when not bound to a model with callback:
+     TypeError [ERR_AMBIGUOUS_ARGUMENT]: The "error/message" argument is ambiguous. The error message "Aggregate not bound to any Model" is identical to the message.
+      at new NodeError (node:internal/errors:372:5)
+      at expectsError (node:assert:807:15)
+      at Function.throws (node:assert:902:3)
+      at Context.<anonymous> (test/aggregate.test.js:825:16)
+      at processImmediate (node:internal/timers:466:21)
+
+  15) connections: should accept mongodb://localhost/fake:
+     Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+  16) connections: connecting to single mongos (gh-3537):
+     Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+  17) connections: connect callbacks should fire when default port utilized:
+     MongoError: failed to connect to server [127.0.0.1:27017] on first connect [Error: connect ECONNREFUSED 127.0.0.1:27017
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1187:16) {
+  name: 'MongoError'
+}]
+      at Pool.<anonymous> (node_modules/mongodb-core/lib/topologies/server.js:327:35)
+      at Pool.emit (node:events:527:28)
+      at Connection.<anonymous> (node_modules/mongodb-core/lib/connection/pool.js:274:12)
+      at Object.onceWrapper (node:events:642:26)
+      at Connection.emit (node:events:527:28)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:177:49)
+      at Object.onceWrapper (node:events:642:26)
+      at Socket.emit (node:events:527:28)
+      at emitErrorNT (node:internal/streams/destroy:157:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+  18) connections: connection pool sharing:  works:
+     Uncaught MongoError: failed to connect to server [localhost:27017] on first connect [Error: connect ECONNREFUSED 127.0.0.1:27017
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1187:16) {
+  name: 'MongoError'
+}]
+      at Pool.<anonymous> (node_modules/mongodb-core/lib/topologies/server.js:327:35)
+      at Pool.emit (node:events:527:28)
+      at Connection.<anonymous> (node_modules/mongodb-core/lib/connection/pool.js:274:12)
+      at Object.onceWrapper (node:events:642:26)
+      at Connection.emit (node:events:527:28)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:177:49)
+      at Object.onceWrapper (node:events:642:26)
+      at Socket.emit (node:events:527:28)
+      at emitErrorNT (node:internal/streams/destroy:157:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+  19) crash: (gh-407) test mongodb crash with invalid objectid string:
+     Uncaught MongoError: failed to connect to server [localhost:27017] on first connect [Error: connect ECONNREFUSED 127.0.0.1:27017
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1187:16) {
+  name: 'MongoError'
+}]
+      at Pool.<anonymous> (node_modules/mongodb-core/lib/topologies/server.js:327:35)
+      at Pool.emit (node:events:527:28)
+      at Connection.<anonymous> (node_modules/mongodb-core/lib/connection/pool.js:274:12)
+      at Object.onceWrapper (node:events:642:26)
+      at Connection.emit (node:events:527:28)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:177:49)
+      at Object.onceWrapper (node:events:642:26)
+      at Socket.emit (node:events:527:28)
+      at emitErrorNT (node:internal/streams/destroy:157:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+  20) document: hooks: post save hooks on subdocuments work (gh-915) (gh-3780):
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: Unknown modifier: $pushAll
+      at test/document.hooks.test.js:477:18
+      at lib/model.js:3709:16
+      at lib/services/model/applyHooks.js:151:17
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at toError (node_modules/mongodb/lib/utils.js:139:22)
+      at node_modules/mongodb/lib/collection.js:1050:67
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+  21) document modified modified states reset after save:
+     Uncaught Expected values to be strictly equal:
+[32m+ actual[39m [31m- expected[39m
+
+[32m+[39m null
+[31m-[39m Error [MongoError]: Unknown modifier: $pushAll
+[31m-[39m     at Function.MongoError.create (/Users/saket.sinha/workspace/ludo/mfl-mongoose/mongoose/node_modules/mongodb-core/lib/error.js:31:11)
+[31m-[39m     at toError (/Users/saket.sinha/workspace/ludo/mfl-mongoose/mongoose/node_modules/mongodb/lib/utils.js:139:22)
+[31m-[39m     at /Users/saket.sinha/workspace/ludo/mfl-mongoose/mongoose/node_modules/mongodb/lib/collection.js:1050:67
+[31m-[39m     at /Users/saket.sinha/workspace/ludo/mfl-mongoose/mongoose/node_modules/mongodb-core/lib/connection/pool.js:461:18
+[31m-[39m     at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+[31m-[39m   code: 9,
+[31m-[39m   driver: true,
+[31m-[39m   errmsg: 'Unknown modifier: $pushAll',
+[31m-[39m   index: 0
+[31m-[39m }
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  [32m+ actual[39m [31m- expected[39m
+  
+  [32m+[39m null
+  [31m-[39m Error [MongoError]: Unknown modifier: $pushAll
+  [31m-[39m     at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+  [31m-[39m     at toError (node_modules/mongodb/lib/utils.js:139:22)
+  [31m-[39m     at node_modules/mongodb/lib/collection.js:1050:67
+  [31m-[39m     at node_modules/mongodb-core/lib/connection/pool.js:461:18
+  [31m-[39m     at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  [31m-[39m   code: 9,
+  [31m-[39m   driver: true,
+  [31m-[39m   errmsg: 'Unknown modifier: $pushAll',
+  [31m-[39m   index: 0
+  [31m-[39m }
+      at Decorator._callFunc (node_modules/empower-core/lib/decorator.js:110:20)
+      at Decorator.concreteAssert (node_modules/empower-core/lib/decorator.js:103:17)
+      at Function.decoratedAssert [as strictEqual] (node_modules/empower-core/lib/decorate.js:51:30)
+      at test/document.modified.test.js:90:18
+      at lib/model.js:3709:16
+      at lib/services/model/applyHooks.js:151:17
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+  22) document gh-2082 works:
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: Unknown modifier: $pushAll
+      at test/document.test.js:1720:18
+      at lib/model.js:3709:16
+      at lib/services/model/applyHooks.js:151:17
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at toError (node_modules/mongodb/lib/utils.js:139:22)
+      at node_modules/mongodb/lib/collection.js:1050:67
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+  23) document bug fixes handles pushing with numeric keys (gh-3623):
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: Unknown modifier: $pushAll
+      at test/document.test.js:2491:20
+      at lib/model.js:3709:16
+      at lib/services/model/applyHooks.js:151:17
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at toError (node_modules/mongodb/lib/utils.js:139:22)
+      at node_modules/mongodb/lib/collection.js:1050:67
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+  24) document bug fixes handles 0 for numeric subdoc ids (gh-3776):
+     Uncaught AssertionError [ERR_ASSERTION]: ifError got unwanted exception: Unknown modifier: $pushAll
+      at test/document.test.js:2548:18
+      at lib/model.js:3709:16
+      at lib/services/model/applyHooks.js:151:17
+      at Function.MongoError.create (node_modules/mongodb-core/lib/error.js:31:11)
+      at toError (node_modules/mongodb/lib/utils.js:139:22)
+      at node_modules/mongodb/lib/collection.js:1050:67
+      at node_modules/mongodb-core/lib/connection/pool.js:461:18
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+  25) model aggregate "before all" hook:
+     Uncaught MongoError: failed to connect to server [localhost:27017] on first connect [Error: connect ECONNREFUSED 127.0.0.1:27017
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1187:16) {
+  name: 'MongoError'
+}]
+      at Pool.<anonymous> (node_modules/mongodb-core/lib/topologies/server.js:327:35)
+      at Pool.emit (node:events:527:28)
+      at Connection.<anonymous> (node_modules/mongodb-core/lib/connection/pool.js:274:12)
+      at Object.onceWrapper (node:events:642:26)
+      at Connection.emit (node:events:527:28)
+      at Socket.<anonymous> (node_modules/mongodb-core/lib/connection/connection.js:177:49)
+      at Object.onceWrapper (node:events:642:26)
+      at Socket.emit (node:events:527:28)
+      at emitErrorNT (node:internal/streams/destroy:157:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+  26) model discriminator() findOne hydrates correct model when fields selection set as string exclusive:
+     Error: Timeout of 4000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+  27) model discriminator() "after each" hook for "model defaults without discriminator":
+     TypeError: Cannot read properties of undefined (reading 'call')
+      at processImmediate (node:internal/timers:466:21)
+
+  28) model discriminator() "after each" hook for "model defaults without discriminator":
+     TypeError: Cannot read properties of undefined (reading 'call')
+      at processImmediate (node:internal/timers:466:21)
+
+  29) model discriminator() "after each" hook for "model defaults without discriminator":
+     TypeError: Cannot read properties of undefined (reading 'call')
+      at processImmediate (node:internal/timers:466:21)
+
+
+
