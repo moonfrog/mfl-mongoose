@@ -1,3 +1,33 @@
+## 🪓 Why this fork?
+
+This fork of Mongoose was created to optimize performance in response to [Automattic/mongoose#15029](https://github.com/Automattic/mongoose/issues/15029), which highlights high CPU usage caused by expensive subdocument processing during `.save()` operations — even when no subdocuments are defined.
+
+### 🛠️ What this fork changes
+
+This fork introduces a fork-specific internal option: **`mflNoSubDoc`**.
+
+When set, it disables execution of an expensive internal sub-function that Mongoose normally invokes during `.save()` for subdocument lifecycle handling.
+
+- The affected function may be invoked from other internal paths, but the optimization only impacts its subdocument-specific usage.
+- This option is not exposed via schema or global config, and must be set internally in your usage.
+- This may break behavior involving subdocuments (e.g. embedded doc hooks, validation, change tracking), but:
+  - In our use case, we do **not use subdocuments**, so the tradeoff is safe and brings noticeable performance gain.
+
+### ⚠️ Important Note on Side Effects
+
+We have **not added test cases** for this behavior, and side effects may occur if subdocs are introduced later. Proceed with caution if extending this fork beyond its original context.
+
+---
+
+## ✅ Upstream Fix
+
+This issue has been fixed in upstream Mongoose:
+
+- See [PR #15055](https://github.com/Automattic/mongoose/pull/15055)
+- Any version that includes this PR or later **does not require** this fork
+
+---
+
 # Mongoose
 
 Mongoose is a [MongoDB](https://www.mongodb.org/) object modeling tool designed to work in an asynchronous environment.
