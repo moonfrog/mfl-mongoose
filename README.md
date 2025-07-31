@@ -1,12 +1,12 @@
 ## 🪓 Why this fork?
 
-This fork of Mongoose was created to optimize performance in response to [Automattic/mongoose#15029](https://github.com/Automattic/mongoose/issues/15029), which highlights high CPU usage caused by expensive subdocument processing during `.save()` operations — even when no subdocuments are defined.
+This fork of Mongoose was created to optimize performance in response to [Automattic/mongoose#15029](https://github.com/Automattic/mongoose/issues/15029), which highlights high CPU usage caused by expensive subdocument processing during `.__getAllSubdocs()` operations — even when no subdocuments are defined.
 
 ### 🛠️ What this fork changes
 
 This fork introduces a fork-specific internal option: **`mflNoSubDoc`**.
 
-When set, it disables execution of an expensive internal sub-function that Mongoose normally invokes during `.save()` for subdocument lifecycle handling.
+When set, it disables execution of an expensive internal sub-function that Mongoose normally invokes during `.__getAllSubdocs()` for subdocument lifecycle handling.
 
 - The affected function may be invoked from other internal paths, but the optimization only impacts its subdocument-specific usage.
 - This option is not exposed via schema or global config, and must be set internally in your usage.
@@ -26,6 +26,20 @@ This issue has been fixed in upstream Mongoose:
 - See [PR #15055](https://github.com/Automattic/mongoose/pull/15055)
 - Any version that includes this PR or later **does not require** this fork
 
+### ✅ Usage Example
+
+```js
+const schemaDefinition = {
+  name: String,
+  email: String,
+  // no subdocs defined
+};
+
+const schemaOptions = {};
+schemaOptions.mflNoSubDoc = true;
+
+const userSchema = new mongoose.Schema(schemaDefinition, schemaOptions);
+```
 ---
 
 # Mongoose
