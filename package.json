@@ -1,7 +1,7 @@
 {
   "name": "@moonfroglabs/mfl-mongoose",
   "description": "Mongoose MongoDB ODM",
-  "version": "4.9.4-noOption",
+  "version": "4.9.4-noSubDocFlag",
   "author": "Guillermo Rauch <guillermo@learnboost.com>",
   "keywords": [
     "mongodb",
